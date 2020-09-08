@@ -1,0 +1,100 @@
+<div class="contain">
+  <div class="shaper"
+       [@divState]>
+
+    <div class="header"> حجز قداس الجمعه</div>
+
+    <mat-form-field class="full-width">
+      <mat-label> عدد الناس ال هيحضروا القداس</mat-label>
+      <input matInput
+             type="number"
+             placeholder=""
+             dir="rtl"
+             ngModel
+             min="0"
+             name="familySize"
+             [(ngModel)]="familyMemberNumber"
+             (change)="familyMemberNumberChanged()">
+    </mat-form-field>
+
+
+    <mat-vertical-stepper class="full-width"
+                          linear="true"
+                          #stepper [@divState]>
+      <mat-step *ngFor="let member of family"
+
+                [stepControl]="member">
+        <form #f="ngForm"
+              (ngSubmit)="onSubmit(f)">
+          <ng-template matStepLabel> بيانات فرد الاسرة</ng-template>
+          <mat-form-field class="full-width">
+            <mat-label>الاسم</mat-label>
+            <input matInput
+                   placeholder="الأسم الرباعي"
+                   ngModel
+                   minlength="10"
+                   maxlength="70"
+                   name="fullName"
+                   #fullName
+                   required>
+          </mat-form-field>
+
+
+          <mat-form-field class="full-width">
+            <mat-label>رقم التليفون</mat-label>
+            <input matInput
+                   placeholder=""
+                   ngModel
+                   type="text"
+                   minlength="11"
+                   maxlength="11"
+                   pattern='(01)[0-9]{9}'
+                   name="phoneNumber"
+                   #phoneNumber
+                   required>
+            <mat-error class="error-message"
+                       *ngIf="(!phoneNumber.valid || !phoneNumber.pristine || phoneNumber.touched )"> برجاء ادخال رقم
+              تليفون صحيح
+
+            </mat-error>
+          </mat-form-field>
+
+
+          <div>
+            <button mat-stroked-button
+                    matStepperNext
+                    [disabled]="!f.valid"
+                    type="submit"> إضافة {{fullName.value}}</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step *ngIf="familyMemberNumber !== 0">
+        <ng-template matStepLabel>تأكيد</ng-template>
+        <p class="full-width"
+           style="display: grid; justify-content: center;">لقد قمت باضافة {{savedPersons}} شخص</p>
+        <div>
+          <button mat-flat-button
+                  class="full-width"
+                  color="primary"
+                  matStepperPrevious [routerLink]="'/mass'" click="finalSubmit">حجز قداس</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+
+  </div>
+</div>
+<div class="alert alert-success cl"
+     role="alert" *ngIf="saved">
+  تم الحفظ بنجاح
+</div>
+
+<div class="alert alert-danger cl"
+     role="alert"
+     *ngIf="err">
+  حدثت مشكلة اثناء الحفظ من فضلك حاول مرة ثانية
+</div>
+
+<section *ngIf="spinnerEnabled">
+  <app-spinner></app-spinner>
+</section>

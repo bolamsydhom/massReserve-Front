@@ -1,0 +1,104 @@
+<div class="contain">
+  <div class="header">اختر القداس</div>
+  <div class="shaper">
+    <!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)"
+    fxLayout="column"
+    fxFlexFill>
+
+      <mat-form-field class="mt-3"  appearance="fill" [@divState]>
+        <mat-label>الكنيسة</mat-label>
+        <mat-select [(value)]="selectedChurch" ngModel name="church" required>
+          <mat-option
+            *ngFor="let church of churches"
+            [value]="church.id"
+            #church
+            required
+          >
+            {{ church.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field
+        class="mt-3"
+
+        appearance="fill"
+        [@divState2]
+      >
+        <mat-label>التاريخ</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [matDatepicker]="disableTyping"
+          [matDatepickerFilter]="onlyOdds"
+          #date
+          ngModel
+          name="date"
+          (dateChange)="addEvent($event)"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi="true" #picker></mat-datepicker>
+      </mat-form-field>
+
+
+      <mat-form-field
+      class="mt-3"
+
+      appearance="fill"
+        [@divState3]
+      >
+        <mat-label>التوقيت</mat-label>
+        <mat-select [(value)]="selectedMass" ngModel name="time" required>
+          <mat-option
+            *ngFor="let mass of massTimes"
+            [value]="mass"
+            name="mass"
+            #mass
+            required
+          >
+            {{ mass }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        class="submit-btn"
+        type="submit"
+        mat-flat-button
+        fxHide.print
+        color="primary"
+        [disabled]="form.invalid"
+        [routerLink]="'/confirm'"
+        class="full-width btun"
+      >
+        تأكيد الحجز
+      </button>
+    </form> -->
+
+    <div data-aos="flip-up"
+      class="card"
+      *ngFor="let mass of masses; let i = index"
+      [ngClass]="{card1: i%2 ===0 , card2: i%2!==0}"
+
+    >
+      <div class="card__header">الجمعة</div>
+      <div class="card__day">{{ mass.day }}</div>
+      <div class="card__month">{{ mass.month }}</div>
+      <button (click)="onSubmit(mass.id)"> حجز {{mass.time}}</button>
+    </div>
+
+    <!-- <div class="card card1">
+      <div class="card__header">الجمعة</div>
+      <div class="card__day">11</div>
+      <div class="card__month">سبتمبر</div>
+      <button>حجز</button>
+    </div>
+    <div class="card card2">
+      <div class="card__header">الجمعة</div>
+      <div class="card__day">11</div>
+      <div class="card__month">سبتمبر</div>
+      <button>حجز</button>
+    </div> -->
+  </div>
+</div>

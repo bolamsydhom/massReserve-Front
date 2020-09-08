@@ -1,0 +1,54 @@
+<section class="login">
+  <div class="login__area">
+    <div class="login__area__form">
+      <h2 class="login__area__form__title">تسجيل الدخول</h2>
+
+      <!-- Email Form -->
+      <span *ngIf="currentInput==='email'">
+        <form [formGroup]="loginForm" novalidate (ngSubmit)="onLogin(loginForm.value)">
+
+          <mat-form-field class="full-width m-r">
+            <input matInput placeholder="البريد الإلكتروني" #email formControlName="email" required (keyup)="onInputChange()">
+
+            <mat-error *ngFor="let validation of account_validation_messages.email">
+              <mat-error class="error-message"
+                *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                {{validation.message}}</mat-error>
+
+            </mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field class="full-width m-r">
+            <input #password matInput placeholder="الرقم السري" formControlName="password" required type="password">
+            <mat-error *ngFor="let validation of account_validation_messages.password">
+              <mat-error class="error-message"
+                *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty ||
+                loginForm.get('password').touched)">
+                {{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-error class="matError" *ngIf="backendError">
+            ايميل او رقم سري غير صحيح
+          </mat-error>
+
+          <button mat-flat-button class="full-width bttn" color=primary [disabled]="loginForm.invalid" type="submit">تسجيل الدخول</button>
+        </form>
+      </span>
+
+      <div class="route-section">
+        <span class="route-section__title">مستخدم جديد ؟؟ </span>
+        <a class="route-section__route" (click)="goToRegister()">سجل الآن</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="lower-bk">
+
+</section>
+
+<section *ngIf="spinnerEnabled">
+  <app-spinner></app-spinner>
+</section>

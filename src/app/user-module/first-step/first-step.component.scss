@@ -1,0 +1,61 @@
+.contain {
+  display: grid;
+  justify-items: center;
+  .shaper {
+    margin-top: 5%;
+    width: 80vw;
+    display: grid;
+    justify-items: center;
+  }
+  .full-width {
+    width: 100%;
+  }
+
+  .header {
+    margin-top: 2%;
+    font-weight: 700;
+    font-size: 1.5rem;
+    justify-self: center;
+    margin-bottom: 7%;
+  }
+}
+
+.alert {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 20%;
+  animation: openAlert 3s ease-in-out  forwards ;
+}
+
+
+@keyframes openAlert {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  25% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+
+@media (max-width: 640px){
+  .alert{
+    top: 10%;
+    width: 99%;
+  }
+}

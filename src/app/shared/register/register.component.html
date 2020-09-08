@@ -1,0 +1,124 @@
+<!-- <p>register works!</p>
+<button mat-raised-button
+        color="primary">Register</button> -->
+
+
+<section class="section">
+  <div class="body">
+    <div class="body__logo" routerLink="/" style="cursor: pointer;"></div>
+    <div class="body__form">
+
+      <h2 class="body__form__title">تسجيل حساب جديد</h2>
+
+
+      <form [formGroup]="accountDetailsForm" novalidate (ngSubmit)="onSubmitAccountDetails(accountDetailsForm.value)">
+
+
+        <mat-form-field class="full-width">
+          <input matInput
+                 minlength="20"
+                 maxlength="70"
+                 placeholder="الأسم رباعي"
+                 formControlName="fullName"
+                 required>
+          <mat-error *ngFor="let validation of account_validation_messages.fullName">
+            <mat-error class="error-message"
+              *ngIf="accountDetailsForm.get('fullName').hasError(validation.type) &&
+              (accountDetailsForm.get('fullName').dirty || accountDetailsForm.get('fullName').touched)">
+              {{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput
+                 minlength="14"
+                 maxlength="14"
+                 placeholder="الرقم القومي"
+                 formControlName="idNumber"
+                 type="text"
+                 required>
+          <mat-error *ngFor="let validation of account_validation_messages.idNumber">
+            <mat-error class="error-message"
+              *ngIf="accountDetailsForm.get('idNumber').hasError(validation.type) &&
+              (accountDetailsForm.get('idNumber').dirty || accountDetailsForm.get('lastname').touched)">
+              {{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput type="email" placeholder="البريد الإلكتروني" formControlName="email" required>
+          <mat-error *ngFor="let validation of account_validation_messages.email">
+            <mat-error class="error-message"
+              *ngIf="accountDetailsForm.get('email').hasError(validation.type) && (accountDetailsForm.get('email').dirty || accountDetailsForm.get('email').touched)">
+              {{validation.message}}</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+
+        <div formGroupName="matching_passwords">
+          <mat-form-field class="full-width" class="full-width ">
+            <input matInput type="password" placeholder="الرقم السري" formControlName="password" required>
+            <mat-error *ngFor="let validation of account_validation_messages.password">
+              <mat-error class="error-message"
+                *ngIf="accountDetailsForm.get('matching_passwords').get('password').hasError(validation.type) && (accountDetailsForm.get('matching_passwords').get('password').dirty || accountDetailsForm.get('matching_passwords').get('password').touched)">
+                {{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width" class="full-width">
+            <input matInput type="password" placeholder="اعد كتابة الرقم السري" formControlName="confirm_password"
+              [errorStateMatcher]="parentErrorStateMatcher" required>
+            <mat-error *ngFor="let validation of account_validation_messages.confirm_password">
+              <mat-error class="error-message"
+                *ngIf="(accountDetailsForm.get('matching_passwords').get('confirm_password').hasError(validation.type)|| accountDetailsForm.get('matching_passwords').hasError(validation.type)) && (accountDetailsForm.get('matching_passwords').get('confirm_password').dirty || accountDetailsForm.get('matching_passwords').get('confirm_password').touched)">
+                {{validation.message}}</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+        <span>
+          <div class="eg-logo"></div>
+          <!-- <span class="eg-logo"></span> -->
+          <span class="eg-postalcode">+20</span>
+          <span formGroupName="country_phone">
+            <mat-form-field class="phone-width " style="margin-right: 10px;">
+              <input matInput type="tel" placeholder="رقم الهاتف" formControlName="phone" required>
+              <mat-hint align="start"><strong>Mobile:</strong>
+                {{ accountDetailsForm.value.country_phone.country.sampleMobilePhone }}
+              </mat-hint>
+              <mat-hint align="end"><strong>Fixed:</strong>
+                {{ accountDetailsForm.value.country_phone.country.sampleFixedPhone }}
+              </mat-hint>
+              <mat-error *ngFor="let validation of account_validation_messages.phone">
+                <mat-error class="error-message" class="error-message"
+                  *ngIf="accountDetailsForm.get('country_phone').get('phone').hasError(validation.type) && (accountDetailsForm.get('country_phone').get('phone').dirty || accountDetailsForm.get('country_phone').get('phone').touched)">
+                  {{ validation.message }}
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+          </span>
+
+
+        </span>
+        <span class="btn-container">
+          <button mat-raised-button
+                  type="submit"
+                  color="primary"
+                  [disabled]="!accountDetailsForm.valid"
+            [ngClass]="!accountDetailsForm.valid ?'submit-btn-disabled' :'submit-btn'">تسجيل</button>
+        </span>
+      </form>
+      <div class="route-section">
+        <a (click)="goToLogin()" class="route-section__route"> سجل دخولك </a>
+        <span class="route-section__title"> لديك حساب بالفعل ؟</span>
+      </div>
+
+      <!-- <button (click)="openDialog(5555)">Modal</button> -->
+
+    </div>
+  </div>
+
+</section>
+
+<section *ngIf="spinnerEnabled">
+  <app-spinner></app-spinner>
+</section>
