@@ -27,6 +27,7 @@ export class MassService {
   }
 
   reserveAMass(id){
-    return this.http.patch(`${this.url}mass/id`, this.prayers);
+    const body = {id: id, prayers: this.prayers}
+    return this.http.patch(`${this.url}mass/patch`, body);
   }
 }
