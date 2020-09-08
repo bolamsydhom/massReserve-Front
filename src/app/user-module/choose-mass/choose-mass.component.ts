@@ -120,10 +120,11 @@ export class ChooseMassComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.showLoading = true;
     this.massService.getAllMasses().subscribe(
       (data) => {
         this.masses = data;
-        console.log(data);
+        this.showLoading = false;
       },
       (error) => {
         console.log(error);

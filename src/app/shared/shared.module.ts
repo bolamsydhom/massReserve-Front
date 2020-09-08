@@ -23,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule
   ],
   exports:[
-    CommonModule,
+    // CommonModule,
     SpinnerComponent
   ],
   providers: [UserService, HttpClientModule, HttpClient],

@@ -16,7 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
-  declarations: [FirstStepComponent, ChooseMassComponent, ConfirmationComponent ],
+  declarations: [FirstStepComponent, ChooseMassComponent, ConfirmationComponent],
   imports: [
     CommonModule,
     MaterialModule,
