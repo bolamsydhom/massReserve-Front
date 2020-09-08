@@ -2,7 +2,8 @@
   display: grid;
   justify-items: center;
   align-content: center;
-
+  // height: 90%;
+  // overflow: auto;
   // height: 500px;
 
   .shaper {
@@ -11,7 +12,7 @@
     display: grid;
     justify-items: center;
     align-content: center;
-    // overflow-y: auto;
+    object-fit: contain;
     // height: 100vh !important;
     scrollbar-color: rgb(11, 88, 119);
     // grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -116,12 +117,11 @@ mat-chip {
   .card {
     width: 50% !important;
   }
-  .card1{
+  .card1 {
     margin-left: 0% !important;
   }
-  .card2{
+  .card2 {
     margin-right: 0% !important;
-
   }
 }
 

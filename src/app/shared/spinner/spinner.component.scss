@@ -3,7 +3,7 @@
 
 }
 .spinner-container {
-  position: absolute;
+  position: fixed;
   // background-image: url(../../../assets/blut.jpg);
   // opacity: 0.5;
   background-color: rgba(107, 107, 107, 0.425);
@@ -14,7 +14,7 @@
   left: 0;
 }
 .breath {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left:50%;
   color: #222;
