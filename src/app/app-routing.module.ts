@@ -13,8 +13,8 @@ const routes: Routes = [
   // { path: '', component: LoginComponent },
   // { path: 'register', component: RegisterComponent },
   { path: '', component: FirstStepComponent },
-  { path: 'mass', component: ChooseMassComponent },
-  { path: 'confirmation', component: ConfirmationComponent},
+  { path: 'mass', component: ChooseMassComponent, canActivate:[AuthGuard] },
+  { path: 'confirmation', component: ConfirmationComponent, canActivate:[AuthGuard]},
 ];
 
 @NgModule({

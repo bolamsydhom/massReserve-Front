@@ -30,4 +30,10 @@ export class MassService {
     const body = {id: id, prayers: this.prayers}
     return this.http.patch(`${this.url}mass/patch`, body);
   }
+
+  isAuthendicated(){
+    return this.prayers?.length > 0;
+  
+  
+  }
 }
