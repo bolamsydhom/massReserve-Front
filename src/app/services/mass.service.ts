@@ -10,8 +10,8 @@ export class MassService {
   ids = [];
   familyMemberNumber = 0;
   constructor(private http: HttpClient) { }
-  // url = 'https://friday-mass.herokuapp.com/';
-  url = 'http://localhost:3000/';
+  url = 'https://friday-mass.herokuapp.com/';
+  // url = 'http://localhost:3000/';
 
   addPrayer(prayer){
     this.ids.push(prayer.idNumber);
