@@ -1,5 +1,6 @@
 <div class="contain">
   <div class="header">اختر القداس</div>
+  <div class="note">يتم الان حجز قداس واحد يوم الجمعه من الساعه ٧:٣٠صباحاً</div>
   <div class="shaper">
     <!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)"
     fxLayout="column"
@@ -85,8 +86,11 @@
       <div class="card__header">الجمعة</div>
       <div class="card__day">{{ mass.day }}</div>
       <div class="card__month">{{ mass.month }}</div>
-      <button (click)="onSubmit(mass.id)"> حجز {{mass.time}}</button>
+      <button (click)="onSubmit(mass.id)"> حجز </button>
+      <!-- <button (click)="onSubmit(mass.id)"> حجز {{mass.time}}</button> -->
     </div>
+
+
 
     <!-- <div class="card card1">
       <div class="card__header">الجمعة</div>

@@ -7,10 +7,13 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class MassService {
   prayers = [];
+  ids = [];
   constructor(private http: HttpClient) { }
   url = 'https://friday-mass.herokuapp.com/';
+  // url = 'http://localhost:3000/';
 
   addPrayer(prayer){
+    this.ids.push(prayer.idNumber);
     this.prayers.push(prayer);
     // console.log(this.prayers);
 
@@ -26,14 +29,19 @@ export class MassService {
 
   }
 
+  checkRepeat(){
+    return this.http.post(`${this.url}mass/add`, this.ids);
+
+  }
+
   reserveAMass(id){
-    const body = {id: id, prayers: this.prayers}
+    const body = {id: id, prayers: this.prayers};
     return this.http.patch(`${this.url}mass/patch`, body);
   }
 
   isAuthendicated(){
     return this.prayers?.length > 0;
-  
-  
+
+
   }
 }

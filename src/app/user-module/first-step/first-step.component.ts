@@ -5,6 +5,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { FatherService } from './../../services/father.service';
 import { ThrowStmt } from '@angular/compiler';
 import { MassService } from 'src/app/services/mass.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-first-step',
@@ -33,7 +34,8 @@ export class FirstStepComponent implements OnInit {
   family;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  constructor( private _formBuilder: FormBuilder, private massService:MassService) { }
+  alreadyExist= false;
+  constructor( private _formBuilder: FormBuilder, private massService:MassService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -49,10 +51,14 @@ export class FirstStepComponent implements OnInit {
   onSubmit(f) {
 
     this.savedPersons++;
-
-
-   this.massService.addPrayer({...f.value });
-
+    console.log(f.invalid);
+    const exist = this.massService.prayers.find(m => m.idNumber === f.value.idNumber);
+    if(exist){
+      this.alreadyExist = true
+      this._snackBar.open("من فضلك ادخل رقم قومي مختلف" , "♥️", {duration: 5000})
+    }else {
+      this.massService.addPrayer({...f.value });
+    }
 
   }
 }

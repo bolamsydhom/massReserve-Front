@@ -11,6 +11,7 @@ import {
 import { FamilyService } from './../../services/family.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-choose-mass',
@@ -116,7 +117,8 @@ export class ChooseMassComponent implements OnInit {
   constructor(
     private massService: MassService,
     private familyService: FamilyService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -170,16 +172,30 @@ export class ChooseMassComponent implements OnInit {
   onSubmit(id) {
     console.log(id);
     this.showLoading = true;
-    this.massService.reserveAMass(id).subscribe(
-      (response) => {
-        this.showLoading = true;
-        this.router.navigate(['/confirmation']);
+    this.massService.checkRepeat().subscribe(
+      () => {
+        this.massService.reserveAMass(id).subscribe(
+          (response) => {
+            this.showLoading = true;
+            this.router.navigate(['/confirmation']);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       },
       (err) => {
-        console.log(err);
+        this._snackBar.open('لا يمكن الحجز اكثر من مرة .. شكرا لتفهمك', '♥️', {
+          duration: 6000,
+        });
+        setTimeout(() => {
+          this.router.navigate(['/']);
+
+        }, 7000);
       }
     );
   }
+
   onlyOdds = (d): boolean => {
     const date = d.getDay();
     // Even dates are disabled.
