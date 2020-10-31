@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
 
 
   onLogin(form) {
-    console.log(form);
+    // console.log(form);
 
     this.spinnerEnabled = true;
     this.userServices.Login(form).subscribe(
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
 
       (error) => {
 
-        console.log(error);
+        // console.log(error);
         this.spinnerEnabled = false;
         this.backendError = true;
       }

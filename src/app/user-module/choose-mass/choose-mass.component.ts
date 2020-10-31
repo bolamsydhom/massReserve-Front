@@ -162,15 +162,15 @@ export class ChooseMassComponent implements OnInit {
         this.state = 'moved';
       }, 100);
     }
-    console.log(m);
-    console.log(this.selectedMass);
+    // console.log(m);
+    // console.log(this.selectedMass);
     this.selectedMass = m;
   }
   addEvent(event: MatDatepickerInputEvent<Date>) {
     this.daySelected = event.value;
   }
   onSubmit(id) {
-    console.log(id);
+    // console.log(id);
     this.showLoading = true;
         this.massService.reserveAMass(id).subscribe(
           (response) => {
@@ -180,7 +180,7 @@ export class ChooseMassComponent implements OnInit {
             }, 1000);
           },
           (err) => {
-            console.log(err);
+            // console.log(err);
           }
         );
       }

@@ -16,7 +16,7 @@ export class UserService {
   modal = new BehaviorSubject<boolean>(this.modalClosed);
 
   register(user: UserModel) {
-    console.log(user);
+    // console.log(user);
     return this.http.post(`${this.url}user/register`, user);
   }
 
@@ -39,7 +39,7 @@ export class UserService {
   }
 
   verifyCode(id, token) {
-    console.log('in verify code');
+    // console.log('in verify code');
     const data = {
       id,
       token
@@ -48,7 +48,7 @@ export class UserService {
   }
 
 isAuthendicated(){
-  console.log(localStorage.getItem('token') != null );
+  // console.log(localStorage.getItem('token') != null );
 
   return localStorage.getItem('token') != null;
 

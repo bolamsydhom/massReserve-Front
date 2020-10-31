@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
   // private isRtl: boolean;
   // private _dirChangeSubscription = Subscription.EMPTY;
   constructor(dir: Directionality) {
-    console.log(dir.value);
+    // console.log(dir.value);
     // dir.value === 'rtl';
 
 

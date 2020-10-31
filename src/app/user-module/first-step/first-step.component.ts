@@ -80,7 +80,7 @@ export class FirstStepComponent implements OnInit {
         (err) => {
           this.savedPersons--;
           this.alreadyExist = true;
-          console.log(err);
+          // console.log(err);
           err.status == 405
             ? this._snackBar.open(
                 'لا يمكن الحجز اكثر من مرة .. شكرا لتفهمك',

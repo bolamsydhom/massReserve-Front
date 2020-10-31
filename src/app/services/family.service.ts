@@ -15,7 +15,7 @@ export class FamilyService {
     const headers = new HttpHeaders({
       Authorization: token
     });
-    console.log(headers);
+    // console.log(headers);
 
     return this.http.post(`${this.url}member/add`, member, {headers});
   }
