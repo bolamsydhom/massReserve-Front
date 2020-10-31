@@ -172,29 +172,29 @@ export class ChooseMassComponent implements OnInit {
   onSubmit(id) {
     console.log(id);
     this.showLoading = true;
-    this.massService.checkRepeat().subscribe(
-      () => {
         this.massService.reserveAMass(id).subscribe(
           (response) => {
             this.showLoading = true;
-            this.router.navigate(['/confirmation']);
+            setTimeout(() => {
+              this.router.navigate(['/confirmation']);
+            }, 1000);
           },
           (err) => {
             console.log(err);
           }
         );
-      },
-      (err) => {
-        this._snackBar.open('لا يمكن الحجز اكثر من مرة .. شكرا لتفهمك', '♥️', {
-          duration: 6000,
-        });
-        setTimeout(() => {
-          this.router.navigate(['/']);
-
-        }, 7000);
       }
-    );
-  }
+      // (err) => {
+      //   this._snackBar.open('لا يمكن الحجز اكثر من مرة .. شكرا لتفهمك', '♥️', {
+      //     duration: 6000,
+      //   });
+      //   setTimeout(() => {
+      //     this.router.navigate(['/']);
+
+      //   }, 7000);
+      // }
+
+
 
   onlyOdds = (d): boolean => {
     const date = d.getDay();

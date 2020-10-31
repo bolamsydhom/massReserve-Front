@@ -8,9 +8,10 @@ import { BehaviorSubject } from 'rxjs';
 export class MassService {
   prayers = [];
   ids = [];
+  familyMemberNumber = 0;
   constructor(private http: HttpClient) { }
-  url = 'https://friday-mass.herokuapp.com/';
-  // url = 'http://localhost:3000/';
+  // url = 'https://friday-mass.herokuapp.com/';
+  url = 'http://localhost:3000/';
 
   addPrayer(prayer){
     this.ids.push(prayer.idNumber);
@@ -29,8 +30,11 @@ export class MassService {
 
   }
 
-  checkRepeat(){
-    return this.http.post(`${this.url}mass/add`, this.ids);
+  checkRepeat(id){
+
+    const body = {id: id};
+
+    return this.http.post(`${this.url}id/add`, body);
 
   }
 

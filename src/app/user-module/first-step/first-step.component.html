@@ -63,7 +63,7 @@
             <input matInput
                    placeholder=""
                    ngModel
-                   type="number"
+                   type="text"
                    minlength="11"
                    maxlength="11"
                    pattern='(01)[0-9]{9}'
@@ -94,7 +94,7 @@
           <button mat-flat-button
                   class="full-width"
                   color="primary"
-                  matStepperPrevious [routerLink]="'/mass'" click="finalSubmit" [disabled]=[alreadyExist]>حجز قداس</button>
+                  matStepperPrevious [routerLink]="'/mass'" click="finalSubmit" [disabled]=[alreadyExist]> حجز قداس ل  {{savedPersons}} شخص</button>
         </div>
       </mat-step>
     </mat-vertical-stepper>
