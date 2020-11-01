@@ -59,6 +59,7 @@ export class FirstStepComponent implements OnInit {
   }
 
   onSubmit(f) {
+    this.spinnerEnabled = true;
     this.err = false;
     this.savedPersons++;
     const exist = this.massService.prayers.find(
@@ -73,11 +74,14 @@ export class FirstStepComponent implements OnInit {
     } else {
       this.massService.checkRepeat(f.value.idNumber).subscribe(
         () => {
+          this.spinnerEnabled = false;
           this.alreadyExist = false;
           this.massService.addPrayer({ ...f.value });
           this.massService.familyMemberNumber = this.familyMemberNumber;
         },
         (err) => {
+          f.value = null;
+          this.spinnerEnabled = false;
           this.savedPersons--;
           this.alreadyExist = true;
           // console.log(err);

@@ -48,4 +48,11 @@ export class MassService {
 
 
   }
+
+  reset(){
+    this.prayers = [];
+    this.ids=[];
+    this.familyMemberNumber = 0;
+
+  }
 }

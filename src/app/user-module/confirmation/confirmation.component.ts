@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Router } from '@angular/router';
+import { MassService } from 'src/app/services/mass.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -19,9 +21,15 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class ConfirmationComponent implements OnInit {
 
-  constructor() { }
+  constructor(    private router: Router   , private massService: MassService ) { }
 
   ngOnInit(): void {
+
+    setTimeout(() => {
+      this.massService.reset();
+      this.router.navigate(['/']);
+      window.location.reload();
+    }, 1000);
   }
 
 }
